@@ -1,15 +1,18 @@
 ﻿import React from "react";
+import type { ReactNode } from "react";
 import "./globals.css";
+import { Inter } from "next/font/google";
 
-export const metadata = {
-  title: "AroundYou",
-  description: "AroundYou frontend"
+const inter = Inter({ subsets: ["latin"] });
+
+type RootLayoutProps = {
+  children: ReactNode;
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, backgroundColor: "#000", color: "#39ff14" }}>
+      <body className={inter.className} style={{ backgroundColor: "#400", color: "#DFD1F4" }}>
         {children}
       </body>
     </html>
