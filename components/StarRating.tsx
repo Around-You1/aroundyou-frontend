@@ -1,21 +1,32 @@
-﻿"use client";
-import React from "react";
+﻿import React from "react";
 
-export default function StarRating({ value, onChange, readOnly }) {
+type StarRatingProps = {
+  value: number;
+  onChange?: (v: number) => void;
+  readOnly?: boolean;
+};
+
+export default function StarRating({ value, onChange, readOnly }: StarRatingProps) {
   const stars = [1, 2, 3, 4, 5];
 
   return (
-    <div style={{ display: "flex", gap: 8 }}>
+    <div style={{ display: "flex", gap: 6 }}>
       {stars.map((s) => (
         <button
           key={s}
-          onClick={() => !readOnly && onChange?.(s)}
+          type="button"
+          onClick={() => {
+            if (readOnly) return;
+            onChange?.(s);
+          }}
+          aria-label={`Rate ${s}`}
           style={{
-            cursor: readOnly ? "default" : "pointer",
-            border: "none",
             background: "transparent",
-            fontSize: 32,
-            color: s <= value ? "#ffd700" : "#555"
+            border: "none",
+            cursor: readOnly ? "default" : "pointer",
+            fontSize: 20,
+            color: s <= value ? "#f5c518" : "#ccc",
+            padding: 4,
           }}
         >
           ★
